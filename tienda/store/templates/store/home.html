@@ -1,0 +1,26 @@
+{% extends "store/base.html" %}
+
+{% block title %}Inicio - Tienda Tech{% endblock %}
+
+{% block content %}
+<h1 class="text-4xl font-extrabold mb-8 text-center">Bienvenido a Tienda Tech ⚡</h1>
+
+<h2 class="text-2xl font-semibold mb-4">Últimos productos</h2>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+  {% for product in latest %}
+  <div class="bg-gradient-to-br from-gray-800 to-black rounded-xl p-4 shadow-lg transform hover:scale-105 transition">
+    <img src="{{ product.image_url }}" alt="{{ product.name }}" class="w-full h-40 object-cover rounded-md mb-3">
+    <h3 class="text-xl font-semibold">{{ product.name }}</h3>
+    <p class="text-teal-300 font-bold">{{ product.price }} €</p>
+    <p class="text-gray-400 mt-2 text-sm">{{ product.description|truncatechars:100 }}</p>
+    <div class="mt-4 flex justify-between items-center">
+      <a href="{% url 'product_detail' product.slug %}" class="px-3 py-1 border rounded">Ver</a>
+      <a href="{% url 'add_to_cart' product.id %}" class="px-3 py-1 bg-teal-500 rounded text-black">Añadir</a>
+    </div>
+  </div>
+  {% empty %}
+  <p>No hay productos aún.</p>
+  {% endfor %}
+</div>
+{% endblock %}
