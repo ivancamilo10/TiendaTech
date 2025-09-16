@@ -1,0 +1,14 @@
+{% extends "store/base.html" %}
+{% block content %}
+<div class="grid md:grid-cols-2 gap-8 items-start">
+  <img src="{{ product.image_url }}" alt="{{ product.name }}" class="w-full rounded-lg shadow-lg">
+  <div>
+    <h1 class="text-4xl font-bold">{{ product.name }}</h1>
+    <p class="text-teal-300 text-2xl mt-2">{{ product.price }} €</p>
+    <p class="mt-4 text-gray-300">{{ product.description }}</p>
+    <div class="mt-6">
+      <a href="{% url 'add_to_cart' product.id %}" class="px-4 py-2 bg-teal-500 rounded text-black">Añadir al carrito</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

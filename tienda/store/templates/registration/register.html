@@ -1,0 +1,9 @@
+{% extends "store/base.html" %}
+{% block content %}
+<h1 class="text-3xl font-bold mb-4">Registro</h1>
+<form method="post" class="max-w-md bg-gray-800 p-6 rounded space-y-4">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button class="px-4 py-2 bg-teal-500 rounded text-black">Crear cuenta</button>
+</form>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "store/base.html" %}
+{% block title %}Productos - Tienda Tech{% endblock %}
+{% block content %}
+<h1 class="text-3xl font-extrabold mb-6">Productos tecnológicos</h1>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+  {% for p in products %}
+  <div class="bg-gradient-to-br from-gray-800 to-black rounded-xl p-4 shadow-lg transform hover:scale-102 transition">
+    <img src="{{ p.image_url }}" alt="{{ p.name }}" class="w-full h-40 object-cover rounded-md mb-3">
+    <h2 class="text-xl font-semibold">{{ p.name }}</h2>
+    <p class="text-teal-300 font-bold">{{ p.price }} €</p>
+    <p class="text-sm text-gray-300 mt-2">{{ p.description|truncatechars:100 }}</p>
+    <div class="mt-4 flex justify-between items-center">
+      <a href="{% url 'product_detail' p.slug %}" class="px-3 py-1 border rounded">Ver</a>
+      <a href="{% url 'add_to_cart' p.id %}" class="px-3 py-1 bg-teal-500 rounded text-black">Añadir</a>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
